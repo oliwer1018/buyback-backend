@@ -11,7 +11,8 @@ def submit_assessment(payload: SubmitAssessmentRequest):
     """
     Submits a device assessment and returns a Celery task ID for async processing.
     """
-    task = evaluate_device.delay(payload.dict())
+    payload = payload.dict(exclude_none=True)
+    task = evaluate_device.delay(payload)
     return {"task_id": task.id}
 
 
