@@ -99,13 +99,10 @@ These files are used to populate SKU and defect data automatically on app init.
 
 ---
 
-## ✅ Tests
-
-\`\`\`bash
+```
 pytest
-\`\`\`
+```
 
----
 
 ## 🧩 Bonus Features (Included)
 
@@ -115,8 +112,6 @@ pytest
 - ✅ Docker support
 - 🚧 API key-level evaluator auth (optional)
 
----
 
-## 📬 Contributing
 
-Pull requests welcome. Please open issues for feature suggestions or bugs.
+
