@@ -25,10 +25,12 @@ class DeviceInfo(BaseModel):
 
 class AssessmentInfo(BaseModel):
     aesthetics_grade: Literal["A+", "A", "B", "C", "D"]
-    battery_capacity: int
-    battery_condition: str
-    screen: str
-    face_id: str
+    battery_capacity: Optional[int] = None
+    battery_condition: Optional[str] = None
+    screen: Optional[str] = None
+    face_id: Optional[str] = None
+    camera: Optional[str] = None
+    microphone: Optional[str] = None
 
     class Config:
         json_schema_extra = {
