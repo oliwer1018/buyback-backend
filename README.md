@@ -47,36 +47,6 @@ docker-compose up --build
 - FastAPI: [http://localhost:8000](http://localhost:8000)
 - Django Admin: [http://localhost:8001/admin](http://localhost:8001)
 
----
-
-### ▶️ Option 2: Manual Setup (No Docker)
-
-#### 1. Clone and Create Virtual Environment
-
-```
-git clone https://github.com/oliwer1018/buyback-backend.git
-cd buyback-backend
-
-python -m venv venv
-source venv/bin/activate  # or venv\Scripts\activate on Windows
-
-pip install -r requirements.txt
-```
-
-#### 2. PostgreSQL & Redis
-
-Make sure you have PostgreSQL and Redis running locally.
-
-#### 3. Set Up Environment
-
-Create a \`.env\` file in the root and fill in DB, Redis, and secret key settings.
-
-#### 4. Django Migrations + Load CSVs
-
-```
-python manage.py migrate
-python manage.py loaddata initial_skus  # if using fixtures
-```
 
 #### 5. Run Servers
 
