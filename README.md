@@ -1,4 +1,4 @@
-# BuyBack Backend
+# buyback Backend
 
 This is a backend system for processing device buyback assessments, handling SKU matching, pricing logic, defect
 deductions, and async task management.
