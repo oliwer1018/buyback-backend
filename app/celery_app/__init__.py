@@ -14,4 +14,4 @@ celery_app = Celery(
     backend=os.getenv("REDIS_URL", "redis://redis:6379/0")
 )
 celery_app.config_from_object("django.conf:settings", namespace="CELERY")
-celery_app.autodiscover_tasks()
+celery_app.autodiscover_tasks(['celery_app'])
