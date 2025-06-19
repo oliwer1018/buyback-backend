@@ -1,6 +1,10 @@
 from fastapi import FastAPI
+from app.fastapi_app.routes import router
 
-app = FastAPI()
+app = FastAPI(title="Buyback Assessment API")
+
+# Include assessment and pricing status endpoints
+app.include_router(router)
 
 
 @app.get("/")
