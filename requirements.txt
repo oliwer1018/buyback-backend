@@ -1,0 +1,9 @@
+fastapi
+uvicorn
+Django>=4.2
+psycopg2-binary
+celery
+redis
+python-dotenv
+SQLAlchemy
+pandas

@@ -1,0 +1,70 @@
+services:
+  db:
+    image: postgres:15
+    restart: always
+    environment:
+      POSTGRES_DB: buyback
+      POSTGRES_USER: user
+      POSTGRES_PASSWORD: password
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+    ports:
+      - "5432:5432"
+
+  redis:
+    image: redis:7
+    restart: always
+    ports:
+      - "6379:6379"
+
+  web:
+    build:
+      context: .
+    container_name: django_app
+    working_dir: /app
+    command: >
+      bash -c "
+        python app/manage.py makemigrations django_app &&
+        python app/manage.py migrate &&
+        python app/manage.py load_initial_data &&
+        python app/manage.py runserver 0.0.0.0:8001"
+    volumes:
+      - .:/app
+    ports:
+      - "8001:8001"  # ✅ exposed for admin access
+    depends_on:
+      - db
+    env_file:
+      - .env
+
+  api:
+    build:
+      context: .
+    container_name: fastapi_app
+    working_dir: /app
+    command: uvicorn app.fastapi_app.main:app --host 0.0.0.0 --port 8000
+    volumes:
+      - .:/app
+    ports:
+      - "8000:8000"
+    depends_on:
+      - db
+    env_file:
+      - .env
+
+  celery:
+    build:
+      context: .
+    container_name: celery_worker
+    working_dir: /app
+    command: celery -A app.celery_app worker --loglevel=info
+    volumes:
+      - .:/app
+    depends_on:
+      - redis
+      - db
+    environment:
+      - DJANGO_SETTINGS_MODULE=django_app.settings
+      - PYTHONPATH=/app
+volumes:
+  postgres_data:
