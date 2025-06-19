@@ -7,3 +7,6 @@ redis
 python-dotenv
 SQLAlchemy
 pandas
+pytest
+httpx
+pytest-asyncio
