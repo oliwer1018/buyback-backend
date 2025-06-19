@@ -63,8 +63,8 @@ services:
     depends_on:
       - redis
       - db
-    environment:
-      - DJANGO_SETTINGS_MODULE=django_app.settings
-      - PYTHONPATH=/app
+    env_file:
+      - .env
+
 volumes:
   postgres_data:
